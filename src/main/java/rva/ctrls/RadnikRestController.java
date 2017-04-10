@@ -25,7 +25,7 @@ public class RadnikRestController {
 		return radnikRepository.findAll();
 	}
 
-	@RequestMapping(value = "preduzece/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "radnik/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Radnik> deletepRadnik(@PathVariable("id") Integer id,@RequestBody Radnik radnik){
 		if(!radnikRepository.exists(radnik.getId()))
 			return new ResponseEntity<Radnik>(HttpStatus.NO_CONTENT);
