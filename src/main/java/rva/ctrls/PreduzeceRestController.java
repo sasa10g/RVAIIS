@@ -20,16 +20,22 @@ public class PreduzeceRestController {
 	@Autowired
 	private PreduzeceRepository preduzeceRepository;
 
-	@RequestMapping(value = "preduzeca", method = RequestMethod.GET)
+	@RequestMapping(value = "preduzece", method = RequestMethod.GET)
 	public Collection<Preduzece> getPreduzeca(){
 		return preduzeceRepository.findAll();
 	}
+	
+	@RequestMapping(value = "preduzece/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Preduzece> getPreduzece(@PathVariable("id") Integer id){
+		Preduzece preduzece = preduzeceRepository.findOne(id);
+		return new ResponseEntity<Preduzece>(preduzece,HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "preduzece/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Preduzece> deletepPeduzece(@PathVariable("id") Integer id,@RequestBody Preduzece preduzece){
-		if(!preduzeceRepository.exists(preduzece.getId()))
+	public ResponseEntity<Preduzece> deletepPeduzece(@PathVariable("id") Integer id){
+		if(!preduzeceRepository.exists(id))
 			return new ResponseEntity<Preduzece>(HttpStatus.NO_CONTENT);
-		preduzeceRepository.delete(preduzece);
+		preduzeceRepository.delete(id);
 		return new ResponseEntity<Preduzece>(HttpStatus.OK);
 	}
 

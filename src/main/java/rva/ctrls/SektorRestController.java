@@ -20,9 +20,15 @@ public class SektorRestController {
 	@Autowired
 	private SektorRepository sektorRepository;
 
-	@RequestMapping(value = "sektori", method = RequestMethod.GET)
+	@RequestMapping(value = "sektor", method = RequestMethod.GET)
 	public Collection<Sektor> getSektori(){
 		return sektorRepository.findAll();
+	}
+	
+	@RequestMapping(value = "sektor/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Sektor> getSektor(@PathVariable("id") Integer id){
+		Sektor sektor = sektorRepository.findOne(id);
+		return new ResponseEntity<Sektor>(sektor,HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "sektor/{id}", method = RequestMethod.DELETE)

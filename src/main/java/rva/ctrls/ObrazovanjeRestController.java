@@ -20,16 +20,22 @@ public class ObrazovanjeRestController {
 	@Autowired
 	private ObrazovanjeRepository obrazovanjeRepository;
 
-	@RequestMapping(value = "obrazovanja", method = RequestMethod.GET)
+	@RequestMapping(value = "obrazovanje", method = RequestMethod.GET)
 	public Collection<Obrazovanje> getObrazovanja(){
 		return obrazovanjeRepository.findAll();
 	}
+	
+	@RequestMapping(value = "obrazovanje/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Obrazovanje> getObrazovanje(@PathVariable("id") Integer id){
+		Obrazovanje obrazovanje = obrazovanjeRepository.findOne(id);
+		return new ResponseEntity<Obrazovanje>(obrazovanje,HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "obrazovanje/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Obrazovanje> deleteObrazovanje(@PathVariable("id") Integer id,@RequestBody Obrazovanje obrazovanje){
-		if(!obrazovanjeRepository.exists(obrazovanje.getId()))
+	public ResponseEntity<Obrazovanje> deleteObrazovanje(@PathVariable("id") Integer id){
+		if(!obrazovanjeRepository.exists(id))
 			return new ResponseEntity<Obrazovanje>(HttpStatus.NO_CONTENT);
-		obrazovanjeRepository.delete(obrazovanje);
+		obrazovanjeRepository.delete(id);
 		return new ResponseEntity<Obrazovanje>(HttpStatus.OK);
 	}
 

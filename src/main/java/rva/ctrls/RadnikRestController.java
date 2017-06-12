@@ -20,9 +20,15 @@ public class RadnikRestController {
 	@Autowired
 	private RadnikRepository radnikRepository;
 
-	@RequestMapping(value = "radnici", method = RequestMethod.GET)
+	@RequestMapping(value = "radnik", method = RequestMethod.GET)
 	public Collection<Radnik> getRadnici(){
 		return radnikRepository.findAll();
+	}
+	
+	@RequestMapping(value = "radnik/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Radnik> getRadnik(@PathVariable("id") Integer id){
+		Radnik radnik = radnikRepository.findOne(id);
+		return new ResponseEntity<Radnik>(radnik,HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "radnik/{id}", method = RequestMethod.DELETE)
@@ -50,4 +56,11 @@ public class RadnikRestController {
 		radnikRepository.save(radnik);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
+	
+//	@RequestMapping(value = "stavkeZaPorudzbinaId/{id}", method = RequestMethod.GET)
+//	public Collection<StavkaPorudzbine> stavkaPoPorudzbiniId(@PathVariable("id") int id){
+//		Porudzbina p = porudzbinaRepository.findOne(id);
+//		return stavkaPorudzbineRepository.findByPorudzbinaBean(p);
+//	}
+	
 }
