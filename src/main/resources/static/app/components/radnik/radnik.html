@@ -1,0 +1,62 @@
+<meta charset="utf-8">
+<div ng-controller="RadnikController as ctrl">
+    <h3>{{ctrl.title}}</h3>
+    <hr>
+    <form name="frm" novalidate class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="id">Id</label>
+            <div class="col-sm-6 col-md-4">
+            	<input type="number" required  ng-model="ctrl.radnik.id" id="id" class="form-control">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="ime">Ime</label>
+            <div class="col-sm-6 col-md-4">
+            	<input type="text" required ng-model="ctrl.radnik.ime" id="ime" class="form-control">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="prezime">Prezime</label>
+            <div class="col-sm-6 col-md-4">
+            	<input type="text" required ng-model="ctrl.radnik.prezime" id="prezime" class="form-control">
+            </div>
+        </div>
+        
+                <div class="form-group">
+            <label class="control-label col-sm-2" for="brojLk">Broj lične karte</label>
+            <div class="col-sm-6 col-md-4">
+            	<input type="text" required ng-model="ctrl.radnik.brojLk" id="brojLk" class="form-control">
+            </div>
+        </div>
+   
+       <div class="form-group">
+            <label class="control-label col-md-2" for="obrazovanjeBean.id">Obrazovanje Id</label>
+            <div class="col-md-3">
+            	<input type="number" required ng-readonly="true" ng-model="ctrl.radnik.obrazovanjeBean.id" id="obrazovanjeBean.id" class="form-control">
+            </div>
+            <label class="control-label col-md-2" for="obrazovanjeBean.naziv">Obrazovanje</label>
+            <div class="col-md-3">
+				<select ng-model="ctrl.radnik.obrazovanjeBean.id" ng-options="stavka.id as stavka.naziv for stavka in ctrl.obrazovanjeBean | orderBy:'naziv'" class="form-control"></select>            	
+            </div>            
+        </div>  
+        
+        <div class="form-group">
+            <label class="control-label col-md-2" for="porudzbinaBean.id">Sektor Id</label>
+            <div class="col-md-3">
+            	<input type="number" required ng-readonly="true" ng-model="ctrl.radnik.sektorBean.id" id="sektorBean.id" class="form-control">
+            </div>
+            <label class="control-label col-md-2" for="sektorBean.naziv">Sektori</label>
+            <div class="col-md-3">
+				<select ng-model="ctrl.radnik.sektorBean.id" ng-options="stavka.id as stavka.naziv for stavka in ctrl.sektorBean | orderBy:'naziv'" class="form-control"></select>            	
+            </div>            
+        </div>
+        
+        <div class="col-sm-offset-2">
+        	<button type="button" class="btn btn-success" ng-click="ctrl.save()" ng-disabled="frm.$invalid">Potvrdi</button>
+        	<button type="button" class="btn btn-danger" ng-click="ctrl.openConfirm('delete')" ng-hide="ctrl.isAdd()">Obriši</button> 
+       		<a class="btn btn-default" href="#/radnik"><i class="fa fa-chevron-left"></i>Nazad</a>		
+        </div>
+    </form>
+</div>

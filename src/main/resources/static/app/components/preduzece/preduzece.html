@@ -1,0 +1,42 @@
+<meta charset="utf-8">
+<div ng-controller="PreduzeceController as ctrl">
+	<h3>{{ctrl.title}}</h3>
+    <hr>
+    <form name="frm" novalidate class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="id">Id</label>
+            <div class="col-sm-6 col-md-4">
+            	<input type="number" required ng-model="ctrl.preduzece.id" id="id" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="naziv">Naziv</label>
+            <div class="col-sm-6 col-md-4">
+            	<input type="text" required ng-model="ctrl.preduzece.naziv" id="naziv" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="pib">PIB</label>
+            <div class="col-sm-6 col-md-4">
+            	<input type="text" required ng-model="ctrl.preduzece.pib" id="pib" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="sediste">Sedište</label>
+            <div class="col-sm-6 col-md-4">
+            	<input type="text" required ng-model="ctrl.preduzece.sediste" id="sediste" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="opis">Opis</label>
+            <div class="col-sm-6 col-md-4">
+            	<input type="text" required ng-model="ctrl.preduzece.opis" id="opis" class="form-control">
+            </div>
+        </div>
+        <div class="col-sm-offset-2">
+        	<button type="button" class="btn btn-success" ng-click="ctrl.save()" ng-disabled="frm.$invalid">Potvrdi</button>
+        	<button type="button" class="btn btn-danger" ng-click="ctrl.openConfirm('delete')" ng-hide="ctrl.isAdd()">Obriši</button>       	
+        	<a class="btn btn-default" href="#/preduzece"><i class="fa fa-chevron-left"></i> Nazad</a>
+        </div>
+    </form>
+</div>

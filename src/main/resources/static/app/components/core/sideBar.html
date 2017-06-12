@@ -1,0 +1,65 @@
+<meta charset="utf-8">
+<ul class="nav nav-side-bar nav-sidebar-padding sideBar"
+	ng-controller="SideBarController as sbc">
+	<div class="panel-group" id="root">
+	<!-- kompanija -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<li><a data-toggle="collapse" data-parent="#root"
+						href="#Kompanija"> Kompanija </a></li>
+				</h4>
+			</div>
+			<div id="Kompanija" class="panel-collapse collapse">
+				<ul class="list-group">
+					<li ng-class="{activeItem:sbc.isActive('obrazovanje')}"><a
+						class="list-group-item" ng-href="#/obrazovanje"> <span>
+								Obrazovanja </span>
+					</a></li>
+					<li ng-class="{activeItem:sbc.isActive('Preduzece')}"><a
+						class="list-group-item" ng-href="#/preduzece"> <span>
+								Preduzeća </span>
+					</a></li>
+					<li ng-class="{activeItem:sbc.isActive('sektor')}"><a
+						class="list-group-item" ng-href="#/sektor"> <span>
+								Sektori </span>
+					</a></li>
+					<li ng-class="{activeItem:sbc.isActive('radnik')}">
+						<a class="list-group-item" ng-href="#/radnik"> <span>
+								Radnici </span>
+					</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- info -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<li><a data-toggle="collapse" data-parent="#root"
+						href="#Info"> Info </a></li>
+				</h4>
+			</div>
+			<div id="Info" class="panel-collapse collapse">
+				<ul class="list-group">
+					<li ng-class="{activeItem:sbc.isActive('about')}"><a
+						class="list-group-item" ng-href="#/about"> <span>
+								O nama </span>
+					</a></li>
+					<li ng-class="{activeItem:sbc.isActive('autor')}"><a
+						class="list-group-item" ng-href="#/autor"> <span>
+								Autor </span>
+					</a></li>
+					<li ng-class="{activeItem:sbc.isActive('location')}"><a
+						class="list-group-item" ng-href="#/location"> <span>
+								Lokacija </span>
+					</a></li>
+					<li ng-class="{activeItem:sbc.isActive('contact')}"><a
+						class="list-group-item" ng-href="#/contact"> <span>
+								Kontakt </span>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</ul>

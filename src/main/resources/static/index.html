@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PROJEKAT - Razvoj višeslojnih aplikacija</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet">
+<link href="./assets/css/font-awesome.css" rel="stylesheet">
+<link href="./assets/css/company.css" rel="stylesheet">
+<link href="./assets/css/ngDialog.css" rel="stylesheet">
+<link href="./assets/css/ngDialog-theme-default.css" rel="stylesheet">
+<link href="./assets/css/ngDialog-theme-plain.css" rel="stylesheet">
+<link href="./assets/css/datepicker.css" rel="stylesheet">
+</head>
+<body ng-app="rvaApp">
+	
+	<div class="container-fluid">
+		<div class="row" ng-include="'app/components/core/header.html'"></div>
+		<div class="row">
+			<div class="col-sm-2" ng-include="'app/components/core/sideBar.html'"></div>
+			<div class="col-sm-10" ui-view></div>
+		</div>
+	</div>
+	
+	<script src="./assets/js/jquery-1.11.3.min/jquery-1.11.3.min.js"></script>
+	<script src="./assets/js/bootstrap.min/bootstrap.min.js"></script>
+	<script src="./assets/js/angular/angular.js"></script>
+	<script src="./assets/js/angular-resource/angular-resource.js"></script>
+	<script
+		src="./assets/js/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="./assets/js/ngDialog.js" style="background-color: Black;"></script>
+	<script src="./assets/js/bootstrap-datepicker.js"></script>
+	<script src="./assets/js/ui-bootstrap-tpls-1.3.2.min.js"></script>
+	<script src="./assets/js/angular-locale_sr-latn-rs.js"></script>
+	
+	<script src="./app/app.modules.js"></script>
+	
+	<script src="./app/components/core/core.module.js"></script>
+	<script src="./app/components/core/core.route.js"></script>
+	<script src="./app/components/core/sideBar.controller.js"></script>
+
+
+	<script src="./app/components/obrazovanje/obrazovanje.module.js"></script>
+	<script src="./app/components/obrazovanje/obrazovanje.route.js"></script>
+	<script src="./app/components/obrazovanje/ObrazovanjeListController.js"></script>
+	<script src="./app/components/obrazovanje/ObrazovanjeController.js"></script>
+	<script src="./app/components/obrazovanje/obrazovanje.service.js"></script>
+	
+	<script src="./app/components/preduzece/preduzece.module.js"></script>
+	<script src="./app/components/preduzece/preduzece.route.js"></script>
+	<script src="./app/components/preduzece/PreduzeceListController.js"></script>
+	<script src="./app/components/preduzece/PreduzeceController.js"></script>
+	<script src="./app/components/preduzece/preduzece.service.js"></script>
+	
+	<script src="./app/components/sektor/sektor.module.js"></script>
+	<script src="./app/components/sektor/sektor.route.js"></script>
+	<script src="./app/components/sektor/SektorListController.js"></script>
+	<script src="./app/components/sektor/SektorController.js"></script>
+	<script src="./app/components/sektor/sektor.service.js"></script>
+	
+
+
+	<script src="./app/components/radnik/radnik.module.js"></script>
+	<script src="./app/components/radnik/radnik.route.js"></script>
+	<script src="./app/components/radnik/RadnikListController.js"></script>
+	<script src="./app/components/radnik/RadnikController.js"></script>
+	<script src="./app/components/radnik/radnik.service.js"></script>
+	
+<!-- 	
+	//KOMENTAR
+	
+	<script src="./app/components/radnik/StavkaPoPorudzbiniController.js"></script>
+	
+	//KOMENTAR
+-->
+
+	
+	<script type="text/ng-template" id="modalDialogId">
+		<div class="ngdialog-message">
+			<p>Da li ste sigurni da želite obrisati slog?</p>
+		</div>
+		<div class="ngdialog-buttons">
+			<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(confirmValue)">DA</button>
+			<button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('button')">NE</button>
+		</div>
+	</script>
+	<script type="text/ng-template" id="modalDialogDelete">
+		<div class="ngdialog-message">
+			<p>Nije moguće obrisati slog, postoje povezani podaci!</p>
+		</div>
+		<div class="ngdialog-buttons">
+			<button type="button" class="btn btn-danger" ng-click="confirm(confirmValue)">OK</button>
+		</div>
+	</script>
+
+
+</body>
+</html>

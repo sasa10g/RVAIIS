@@ -1,0 +1,98 @@
+<meta charset="utf-8">
+<div ng-controller="RadnikListController as ctrl">
+    <h3>Lista radnika</h3>
+	<table class="table table-hover table-bordered">
+		<thead>
+		<tr class="active">
+			<td><input class="form-control" id="id" name="id" placeholder="Id" ng-model="ctrl.search.id"></td>
+			<td><input class="form-control" id="ime" name="ime" placeholder="Ime" ng-model="ctrl.search.ime"></td>
+			<td><input class="form-control" id="prezime" name="prezime" placeholder="Prezime" ng-model="ctrl.search.prezime"></td>	
+			<td><input class="form-control" id="brojLk" name="brojLk" placeholder="Broj lične karte" ng-model="ctrl.search.brojLk"></td>			
+			<td><input class="form-control" id="obrazovanjeBean" name="obrazovanjeBean" placeholder="Obrazovanje" ng-model="ctrl.search.obrazovanjeBean.naziv"></td>
+			<td><input class="form-control" id="sektorBean" name="sektorBean" placeholder="Sektor" ng-model="ctrl.search.sektorBean.naziv"></td>							
+		</tr>
+		<tr class="active">
+			<th>
+				<a class="link" ng-href ng-click="ctrl.tableChanged('id')">
+                    Id
+                    <i class="fa fa-sort disabled" ng-hide="ctrl.sort == 'id'"></i>
+                    <i class="fa fa-sort-desc" ng-show="ctrl.sort == 'id' && ctrl.sortDirection == '-'"></i>     
+                    <i class="fa fa-sort-asc" ng-show="ctrl.sort == 'id' && ctrl.sortDirection == '+'"></i>
+                </a>
+			</th>
+			<th>
+				<a class="link" ng-href ng-click="ctrl.tableChanged('ime')">
+                    Ime
+                    <i class="fa fa-sort disabled" ng-hide="ctrl.sort == 'ime'"></i>
+                    <i class="fa fa-sort-desc" ng-show="ctrl.sort == 'ime' && ctrl.sortDirection == '-'"></i>     
+                    <i class="fa fa-sort-asc" ng-show="ctrl.sort == 'ime' && ctrl.sortDirection == '+'"></i>
+                </a>
+			</th>
+			<th>
+				<a class="link" ng-href ng-click="ctrl.tableChanged('prezime')">
+                    Prezime
+                    <i class="fa fa-sort disabled" ng-hide="ctrl.sort == 'prezime'"></i>
+                    <i class="fa fa-sort-desc" ng-show="ctrl.sort == 'prezime' && ctrl.sortDirection == '-'"></i>     
+                    <i class="fa fa-sort-asc" ng-show="ctrl.sort == 'prezime' && ctrl.sortDirection == '+'"></i>
+                </a>
+			</th>
+			<th>
+				<a class="link" ng-href ng-click="ctrl.tableChanged('brojLk')">
+                    Broj lične karte
+                    <i class="fa fa-sort disabled" ng-hide="ctrl.sort == 'brojLk'"></i>
+                    <i class="fa fa-sort-desc" ng-show="ctrl.sort == 'brojLk' && ctrl.sortDirection == '-'"></i>     
+                    <i class="fa fa-sort-asc" ng-show="ctrl.sort == 'brojLk' && ctrl.sortDirection == '+'"></i>
+                </a>
+			</th>	
+			<th>
+				<a class="link" ng-href ng-click="ctrl.tableChanged('obrazovanjeBean.naziv')">
+                    Obrazovanje
+                    <i class="fa fa-sort disabled" ng-hide="ctrl.sort == 'obrazovanjeBean.naziv'"></i>
+                    <i class="fa fa-sort-desc" ng-show="ctrl.sort == 'obrazovanjeBean.naziv' && ctrl.sortDirection == '-'"></i>     
+                    <i class="fa fa-sort-asc" ng-show="ctrl.sort == 'obrazovanjeBean.naziv' && ctrl.sortDirection == '+'"></i>
+                </a>
+			</th>
+			<th>
+				<a class="link" ng-href ng-click="ctrl.tableChanged('sektorBean.naziv')">
+                    Sektor
+                    <i class="fa fa-sort disabled" ng-hide="ctrl.sort == 'sektorBean.naziv'"></i>
+                    <i class="fa fa-sort-desc" ng-show="ctrl.sort == 'sektorBean.naziv' && ctrl.sortDirection == '-'"></i>     
+                    <i class="fa fa-sort-asc" ng-show="ctrl.sort == 'sektorBean.naziv' && ctrl.sortDirection == '+'"></i>
+                </a>
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-click="ctrl.edit(stavka.id)" class="link" ng-repeat="stavka in ctrl.radnik | filter : ctrl.search | orderBy : ctrl.sortDirection + ctrl.sort
+		|limitTo: ctrl.pagination.pageSize: (ctrl.pagination.currentPage-1)*ctrl.pagination.pageSize">
+			<td>{{stavka.id}}</td>
+			<td>{{stavka.ime}}</td>	
+			<td>{{stavka.prezime}}</td>
+			<td>{{stavka.brojLk}}</td>			
+			<td>{{stavka.obrazovanjeBean.naziv}}</td>
+			<td>{{stavka.sektorBean.naziv}}</td>	
+		</tr>
+		</tbody>
+	</table>
+	<ul class="pagination">
+		<li ng-class="{'disabled' : ctrl.pagination.currentPage == 1}">
+			<a class="link" ng-href aria-label="Prethodna" ng-click="ctrl.pagination.changePage(ctrl.pagination.currentPage - 1)">
+				<span aria-hidden="true">&laquo;</span>
+			</a>
+		</li>
+		<li ng-repeat="page in ctrl.pagination.pages track by $index" ng-class="{'active':($index + 1) == ctrl.pagination.currentPage}">
+			<a class="link" ng-href ng-click="ctrl.pagination.changePage($index+1)">{{$index+1}}</a>
+		</li>
+		<li ng-class="{'disabled' : ctrl.pagination.currentPage == ctrl.pagination.pages.length}">
+			<a class="link" ng-href aria-label="Sledeća" ng-click="ctrl.pagination.changePage(ctrl.pagination.currentPage + 1)">
+				<span aria-hidden="true">&raquo;</span>
+			</a>
+		</li>
+	</ul>
+	<hr>
+	<div>
+        <a class="btn btn-success btn-md" href="#/radnik/add">
+			<span class="glyphicon glyphicon-plus"></span>
+		</a>
+    </div>
+</div>

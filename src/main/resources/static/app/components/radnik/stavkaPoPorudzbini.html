@@ -1,0 +1,129 @@
+<div ng-controller="StavkaPoPorudzbiniController as ctrl">
+	<form name="frm" novalidate class="form-horizontal">
+
+		<h3>Porudžbina</h3>
+
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="id">Id</label>
+			<div class="col-sm-6 col-md-4">
+				<input type="number" required ng-readonly="true"
+					ng-model="ctrl.porudzbinaBean.id" id="id" class="form-control">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="dobavljac">Dobavljač</label>
+			<div class="col-sm-6 col-md-4">
+				<input type=text required ng-readonly="true"
+					ng-model="ctrl.porudzbinaBean.dobavljacBean.naziv" id="dobavljac"
+					class="form-control">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="iznos">Iznos</label>
+			<div class="col-sm-6 col-md-4">
+				<input type="number" required ng-readonly="true"
+					ng-model="ctrl.porudzbinaBean.iznos" id="iznos"
+					class="form-control">
+			</div>
+		</div>
+
+		<h3>Stavke Porudžbine</h3>
+
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr class="active">
+					<td><input class="form-control" id="id" name="id"
+						placeholder="Id" ng-model="ctrl.search.stavkaPorudzbine.id"></td>
+					<td><input class="form-control" id="redniBroj"
+						name="redniBroj" placeholder="Redni broj"
+						ng-model="ctrl.search.stavkaPorudzbine.redniBroj"></td>
+					<td><input class="form-control" id="artiklBean"
+						name="artiklBean" placeholder="Artikl"
+						ng-model="ctrl.search.artiklBean.naziv"></td>
+					<td><input class="form-control" id="kolicina" name="kolicina"
+						placeholder="Količina"
+						ng-model="ctrl.search.stavkaPorudzbine.kolicina"></td>
+					<td><input class="form-control" id="jedinicaMere"
+						name="jedinicaMere" placeholder="Jedinica mere"
+						ng-model="ctrl.search.stavkaPorudzbine.jedinicaMere"></td>
+					<td><input class="form-control" id="cena" name="cena"
+						placeholder="Cena" ng-model="ctrl.search.stavkaPorudzbine.cena"></td>
+				</tr>
+				<tr class="active">
+					<th><a class="link" ng-href ng-click="ctrl.tableChanged('id')">
+							Id <i class="fa fa-sort disabled" ng-hide="ctrl.sort == 'id'"></i>
+							<i class="fa fa-sort-desc"
+							ng-show="ctrl.sort == 'id' && ctrl.sortDirection == '+'"></i> <i
+							class="fa fa-sort-asc"
+							ng-show="ctrl.sort == 'id' && ctrl.sortDirection == '-'"></i>
+					</a></th>
+
+					<th><a class="link" ng-href
+						ng-click="ctrl.tableChanged('redniBroj')">Redni broj <i
+							class="fa fa-sort disabled" ng-hide="ctrl.sort == 'redniBroj'"></i>
+							<i class="fa fa-sort-desc"
+							ng-show="ctrl.sort == 'redniBroj' && ctrl.sortDirection == '+'"></i>
+							<i class="fa fa-sort-asc"
+							ng-show="ctrl.sort == 'redniBroj' && ctrl.sortDirection == '-'"></i>
+					</a></th>
+
+					<th><a class="link" ng-href
+						ng-click="ctrl.tableChanged('artiklBean.naziv')"> Artikl <i
+							class="fa fa-sort disabled"
+							ng-hide="ctrl.sort == 'artiklBean.naziv'"></i> <i
+							class="fa fa-sort-desc"
+							ng-show="ctrl.sort == 'artiklBean.naziv' && ctrl.sortDirection == '+'"></i>
+							<i class="fa fa-sort-asc"
+							ng-show="ctrl.sort == 'artiklBean.naziv' && ctrl.sortDirection == '-'"></i>
+					</a></th>
+
+					<th><a class="link" ng-href
+						ng-click="ctrl.tableChanged('kolicina')"> Količina <i
+							class="fa fa-sort disabled" ng-hide="ctrl.sort == 'kolicina'"></i>
+							<i class="fa fa-sort-desc"
+							ng-show="ctrl.sort == 'kolicina' && ctrl.sortDirection == '+'"></i>
+							<i class="fa fa-sort-asc"
+							ng-show="ctrl.sort == 'kolicina' && ctrl.sortDirection == '-'"></i>
+					</a></th>
+
+					<th><a class="link" ng-href
+						ng-click="ctrl.tableChanged('jedinicaMere')"> Jedinica mere <i
+							class="fa fa-sort disabled" ng-hide="ctrl.sort == 'jedinicaMere'"></i>
+							<i class="fa fa-sort-desc"
+							ng-show="ctrl.sort == 'jedinicaMere' && ctrl.sortDirection == '+'"></i>
+							<i class="fa fa-sort-asc"
+							ng-show="ctrl.sort == 'jedinicaMere' && ctrl.sortDirection == '-'"></i>
+					</a></th>
+
+					<th><a class="link" ng-href
+						ng-click="ctrl.tableChanged('cena')"> Cena <i
+							class="fa fa-sort disabled" ng-hide="ctrl.sort == 'cena'"></i> <i
+							class="fa fa-sort-desc"
+							ng-show="ctrl.sort == 'cena' && ctrl.sortDirection == '+'"></i> <i
+							class="fa fa-sort-asc"
+							ng-show="ctrl.sort == 'cena' && ctrl.sortDirection == '-'"></i>
+					</a></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-click="ctrl.edit(stavka.id)" class="link"
+					ng-repeat="stavka in ctrl.stavkaPorudzbine | filter : ctrl.search | orderBy : ctrl.sortDirection + ctrl.sort | limitTo : ctrl.pagination.pageSize : (ctrl.pagination.currentPage-1) * ctrl.pagination.pageSize">
+					<td>{{stavka.id}}</td>
+					<td>{{stavka.redniBroj}}</td>
+					<td>{{stavka.artiklBean.naziv}}</td>
+					<td>{{stavka.kolicina}}</td>
+					<td>{{stavka.jedinicaMere}}</td>
+					<td>{{stavka.cena}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<hr>
+		<div class="col-sm-offset-2">
+			<button type="button" class="btn btn-primary"
+				ng-click="ctrl.addStavkaPoPorudzbini()">Upis nove stavke
+				porudzbine</button>
+			<button type="button" class="btn btn-default" ng-click="ctrl.back()">Nazad</button>
+		</div>
+	</form>
+</div>
