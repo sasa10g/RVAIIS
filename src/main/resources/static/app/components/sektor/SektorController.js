@@ -17,9 +17,9 @@
 		});
 		ctrl.save = function() {
 			if($stateParams.id === "add")
-				ctrl.preduzece.$insert(success);
+				ctrl.sektor.$insert(success);
 			else
-				ctrl.preduzece.$update(success);
+				ctrl.sektor.$update(success);
 		}
 		function success() {
 			$location.path('/sektor');
@@ -36,6 +36,13 @@
 				})
 			});
 		}
+		
+		ctrl.isEdit = function() {
+ 			if($stateParams.id === "add")
+ 				return false;
+ 			else
+ 				return true;
+ 		};
 		
 		ctrl.isAdd = function() {
 			if($stateParams.id === "add")
@@ -55,7 +62,7 @@
 			});
 		};
 		ctrl.prikaziRadnike = function() {
-			$location.path('/radnici/'+ctrl.sektor.id);
+			$location.path('/radnikPoSektoru/'+ctrl.sektor.id);
 		};
 		
 	};

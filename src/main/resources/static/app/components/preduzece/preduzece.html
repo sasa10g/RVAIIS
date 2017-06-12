@@ -6,7 +6,7 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="id">Id</label>
             <div class="col-sm-6 col-md-4">
-            	<input type="number" required ng-model="ctrl.preduzece.id" id="id" class="form-control">
+				<input type="number" required ng-model="ctrl.preduzece.id" ng-disabled="ctrl.isEdit()" class="form-control" id="id">		
             </div>
         </div>
         <div class="form-group">

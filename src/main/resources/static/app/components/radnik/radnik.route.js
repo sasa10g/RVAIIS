@@ -10,14 +10,10 @@
 		}).state('radnik', {
 			url: '/radnik/:id',
 			templateUrl: 'app/components/radnik/radnik.html'
-		})
-		
-		/**
-		.state('stavkaPoPorudzbini', {
-			url: '/stavkaPoPorudzbini/:idPorudzbine',
-			templateUrl: 'app/components/radnik/stavkaPoPorudzbini.html'
+		}).state('radnikPoSektoru', {
+			url: '/radnikPoSektoru/:idSektora',
+			templateUrl: 'app/components/radnik/radnikPoSektoru.html'
 		}); 
-		**/
 	};
 
 	config.$inject = ["$stateProvider","$urlRouterProvider"];

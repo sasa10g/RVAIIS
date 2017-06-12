@@ -1,18 +1,19 @@
 (function() {
 	"use strict";
-	var StavkaPoPorudzbiniController = function($stateParams, $location, 
-			StavkaPorudzbineService, PorudzbinaService, ngDialog, $http, baseUrl) {
+	var RadnikPoSektoruController = function($stateParams, $location, 
+			RadnikService, SektorService, ngDialog, $http, baseUrl) {
 		var ctrl = this;
-		PorudzbinaService.get({
-			id: $stateParams.idPorudzbine}).$promise.then(function(data) {
-				ctrl.porudzbinaBean = data;
+		
+		SektorService.get({
+			id: $stateParams.idSektora}).$promise.then(function(data) {
+				ctrl.sektorBean = data;
 			});
 		
 		$http({
 			method: 'GET',
-			url: baseUrl+'stavkeZaPorudzbinaId/'+ $stateParams.idPorudzbine
+			url: baseUrl+'radniciZaSektorId/'+ $stateParams.idSektora
 		}).then(function successCallback(response) {
-			ctrl.stavkaPorudzbine = response.data;
+			ctrl.radnik = response.data;
 		});
 		
 		ctrl.tableChanged = function(sortParam) {
@@ -24,7 +25,7 @@
 			}
 		};
 		ctrl.edit = function(id) {
-			$location.path("/stavkaPorudzbine/"+id+"/"+ctrl.porudzbinaBean.id+"/stavkaPoPorudzbini");
+			$location.path("/radnik/"+id+"/"+ctrl.sektorBean.id+"/radnikPoSektoru");
 		};
 		
 		ctrl.back = function() {
@@ -33,9 +34,9 @@
 		
 	};
 	
-	StavkaPoPorudzbiniController.$inject = ["$stateParams","$location","StavkaPorudzbineService","PorudzbinaService",
+	RadnikPoSektoruController.$inject = ["$stateParams","$location","RadnikService","SektorService",
 		"ngDialog","$http","baseUrl"];
-	angular.module('rva.stavkaPorudzbine').controller("StavkaPoPorudzbiniController", StavkaPoPorudzbiniController);
+	angular.module('rva.radnik').controller("RadnikPoSektoruController", RadnikPoSektoruController);
 })();
 
 

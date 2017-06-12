@@ -42,6 +42,13 @@
 			$location.path('/radnik');
 		};
 		
+		ctrl.isEdit = function() {
+ 			if($stateParams.id === "add")
+ 				return false;
+ 			else
+ 				return true;
+ 		};
+		
 		ctrl.isAdd = function() {
 			if($stateParams.id === "add")
 				return true;

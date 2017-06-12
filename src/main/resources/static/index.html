@@ -16,8 +16,8 @@
 	<div class="container-fluid">
 		<div class="row" ng-include="'app/components/core/header.html'"></div>
 		<div class="row">
-			<div class="col-sm-2" ng-include="'app/components/core/sideBar.html'"></div>
-			<div class="col-sm-10" ui-view></div>
+			<!--  <div class="col-sm-2" ng-include="'app/components/core/sideBar.html'"></div> -->
+			<div class="col-sm-12" ui-view align="center"></div>
 		</div>
 	</div>
 	
@@ -64,14 +64,8 @@
 	<script src="./app/components/radnik/RadnikListController.js"></script>
 	<script src="./app/components/radnik/RadnikController.js"></script>
 	<script src="./app/components/radnik/radnik.service.js"></script>
-	
-<!-- 	
-	//KOMENTAR
-	
-	<script src="./app/components/radnik/StavkaPoPorudzbiniController.js"></script>
-	
-	//KOMENTAR
--->
+
+	<script src="./app/components/radnik/RadnikPoSektoruController.js"></script>
 
 	
 	<script type="text/ng-template" id="modalDialogId">

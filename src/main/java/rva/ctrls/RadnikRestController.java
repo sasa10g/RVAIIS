@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import rva.jpa.Radnik;
+import rva.jpa.Sektor;
+import rva.reps.SektorRepository;
 import rva.reps.RadnikRepository;
 
 @RestController
@@ -19,7 +21,9 @@ public class RadnikRestController {
 
 	@Autowired
 	private RadnikRepository radnikRepository;
-
+	@Autowired
+	private SektorRepository sektorRepository;
+	
 	@RequestMapping(value = "radnik", method = RequestMethod.GET)
 	public Collection<Radnik> getRadnici(){
 		return radnikRepository.findAll();
@@ -57,10 +61,10 @@ public class RadnikRestController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
-//	@RequestMapping(value = "stavkeZaPorudzbinaId/{id}", method = RequestMethod.GET)
-//	public Collection<StavkaPorudzbine> stavkaPoPorudzbiniId(@PathVariable("id") int id){
-//		Porudzbina p = porudzbinaRepository.findOne(id);
-//		return stavkaPorudzbineRepository.findByPorudzbinaBean(p);
-//	}
+	@RequestMapping(value = "radniciZaSektorId/{id}", method = RequestMethod.GET)
+	public Collection<Radnik> radnikPoSektoruId(@PathVariable("id") int id){
+		Sektor sektor = sektorRepository.findOne(id);
+		return radnikRepository.findBySektorBean(sektor);
+	}
 	
 }
