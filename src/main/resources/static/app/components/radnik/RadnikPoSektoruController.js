@@ -1,13 +1,17 @@
 (function() {
 	"use strict";
 	var RadnikPoSektoruController = function($stateParams, $location, 
-			RadnikService, SektorService, ngDialog, $http, baseUrl) {
+			RadnikService, SektorService, PreduzeceService, ngDialog, $http, baseUrl) {
 		var ctrl = this;
 		
 		SektorService.get({
 			id: $stateParams.idSektora}).$promise.then(function(data) {
 				ctrl.sektorBean = data;
 			});
+		
+		PreduzeceService.query().$promise.then(function(data) {
+			ctrl.preduzeceBean = data;
+		});
 		
 		$http({
 			method: 'GET',
@@ -34,7 +38,7 @@
 		
 	};
 	
-	RadnikPoSektoruController.$inject = ["$stateParams","$location","RadnikService","SektorService",
+	RadnikPoSektoruController.$inject = ["$stateParams","$location","RadnikService","SektorService", "PreduzeceService",
 		"ngDialog","$http","baseUrl"];
 	angular.module('rva.radnik').controller("RadnikPoSektoruController", RadnikPoSektoruController);
 })();
